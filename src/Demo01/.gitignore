@@ -1,0 +1,9 @@
+/.vs
+/Demo01/x64/Debug
+*.log
+*.tlog
+*.obj
+/Demo01/Debug/Demo01.tlog
+*.exe
+*.ilk
+*.dll
