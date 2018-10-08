@@ -1,6 +1,7 @@
 #include <memory>
 
 #include "cv_algorithm.h"
+#include "LLWindow.h"
 
 
 void rgb2gray(Mat& oImage, Mat& nImage) 
@@ -102,7 +103,7 @@ int fuliye(Mat& input)
 		Mat line(planes[0], Rect(0, i, complexI.rows, 1));
 		minMaxLoc(line, &min, &max);
 		vec_max.push_back(max);
-		cout << "max:" << max << "    min:" << min << endl;
+		//cout << "max:" << max << "    min:" << min << endl;
 	}
 
 	for (size_t i = 0; i < complexI.rows; i++)
@@ -166,14 +167,24 @@ int fuliye(Mat& input)
 	}
 	//magnitudeImage.copyTo(bdft);
 	Mat bdft_result = get_binary(bdft);
-	cv::imwrite("dft.bmp", magnitudeImage);
+	//cv::imwrite("dft.bmp", magnitudeImage);
+	show_image(bdft);
 
 	Mat invDFT, invDFTcvt;
 	idft(complexI, invDFT, DFT_ROWS | DFT_SCALE | DFT_REAL_OUTPUT);//ÀëÉ¢¸µÁ¢Ò¶Äæ±ä»»
 	invDFT.convertTo(invDFTcvt, CV_8U);
 
-	imwrite("idft.bmp", invDFTcvt);
+	//imwrite("idft.bmp", invDFTcvt);
+	show_image(invDFTcvt);
 
 	return 0;
+}
+
+void show_image(Mat& mat) 
+{
+	shared_ptr<LLWindow> lw(new LLWindow(mat.cols, mat.rows, mat.channels()));
+	lw->show_window();
+	lw->draw_img((char*)mat.data);
+	//g_v_window.push_back(lw);
 }
 

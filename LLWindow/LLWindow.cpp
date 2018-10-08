@@ -2,6 +2,8 @@
 #include <thread>
 #include <iostream>
 
+wstring LLWindow::class_suffix = L"";
+
 LLWindow::LLWindow() : LLWindow(500, 500, 3)
 {
 	
@@ -10,7 +12,9 @@ LLWindow::LLWindow() : LLWindow(500, 500, 3)
 LLWindow::LLWindow(int width, int heigth, int chnl_count) : m_hwnd(nullptr),
 m_width(width), m_height(heigth), m_chnl_count(chnl_count)
 {
-	m_wclass = LPlayerWinClass;
+	LLWindow::class_suffix += L"-";
+
+	m_wclass = LLWindow::class_suffix + LPlayerWinClass;
 	m_wtitle = LPlayerWinTitle;
 	memset(&m_infohead, 0, sizeof(m_infohead));
 
@@ -40,6 +44,7 @@ m_width(width), m_height(heigth), m_chnl_count(chnl_count)
 LLWindow::~LLWindow()
 {
 	delete m_img_buf;
+	cout << "destruct" << endl;
 }
 
 HWND LLWindow::get_hwnd()
@@ -143,9 +148,13 @@ int LLWindow::show_window()
 		return 0;
 	}
 
+	auto self(shared_from_this());
+
 	unique_lock<mutex> uqlck(m_window_start_mtx);
-	auto msg_loop = [this]() -> int 
+	auto msg_loop = [this, self]() -> int 
 	{
+
+		cout << "count:" << self.use_count() << endl;
 		MSG msg;
 
 		m_hInst = GetModuleHandle(0);
@@ -168,11 +177,19 @@ int LLWindow::show_window()
 
 		while (GetMessage(&msg, m_hwnd, 0, 0/*, PM_REMOVE*/))
 		{
+			if (msg.message == WM_QUIT)
+			{
+				cout << "quit thread\n";
+				break;
+			}
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
+
 		}
 		return (int)msg.wParam;
 	};
+
+	cout << "count:" << self.use_count() << endl;
 
 	thread th_msg_loop(msg_loop);
 	th_msg_loop.detach();

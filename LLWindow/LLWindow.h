@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class LLWindow
+class LLWindow :  public std::enable_shared_from_this<LLWindow>
 {
 public:
 	LLWindow();
@@ -33,6 +33,8 @@ public:
 private:
 	int init_instance();
 	int register_class();
+
+	static wstring class_suffix;
 
 
 
