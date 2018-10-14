@@ -25,6 +25,9 @@ Mat get_edges(Mat& gray_image);
 int fuliye(Mat& input);
 
 //vector<LLWindow*> g_v_window;
+
+int cutout_image(string ifile, string ofile);
+
 void show_image(Mat& mat);
 
 #endif

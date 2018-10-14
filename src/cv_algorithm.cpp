@@ -168,7 +168,10 @@ int fuliye(Mat& input)
 	//magnitudeImage.copyTo(bdft);
 	Mat bdft_result = get_binary(bdft);
 	//cv::imwrite("dft.bmp", magnitudeImage);
-	show_image(bdft);
+	Mat diff_mat = bdft - bdft_result;
+	Mat result_image;
+	erode(diff_mat, result_image, Mat());
+	show_image(result_image);
 
 	Mat invDFT, invDFTcvt;
 	idft(complexI, invDFT, DFT_ROWS | DFT_SCALE | DFT_REAL_OUTPUT);//ÀëÉ¢¸µÁ¢Ò¶Äæ±ä»»
@@ -177,6 +180,25 @@ int fuliye(Mat& input)
 	//imwrite("idft.bmp", invDFTcvt);
 	show_image(invDFTcvt);
 
+	return 0;
+}
+
+int cutout_image(string ifile, string ofile) 
+{
+	Mat image = imread(ifile, -1);
+	int depth = image.channels();
+	assert(4 == depth);
+	for (size_t i = 0; i < image.rows; i++)
+	{
+		for (size_t j = 0; j < image.cols; j++) 
+		{
+			int value = (image.at<Vec4b>(i, j)[0] +	image.at<Vec4b>(i, j)[1] + image.at<Vec4b>(i, j)[2]) / 3;
+
+			image.at<Vec4b>(i, j)[3] = 255 - value;
+
+		}
+	}
+	imwrite(ofile, image);
 	return 0;
 }
 
