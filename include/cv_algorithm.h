@@ -8,7 +8,9 @@
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 
+#ifdef __WINDOWS__
 #include "LLWindow.h"
+#endif
 
 using namespace std;
 using namespace cv;

@@ -1,13 +1,11 @@
 #include <memory>
 
 #include "cv_algorithm.h"
-#include "LLWindow.h"
-
 
 void rgb2gray(Mat& oImage, Mat& nImage) 
 {
 	assert(oImage.depth() != 8);
-	cvtColor(oImage, nImage, CV_RGBA2GRAY);
+    cvtColor(oImage, nImage, COLOR_RGBA2GRAY);
 }
 
 //mat 没有赋值构造？
@@ -43,8 +41,8 @@ Mat get_hist(Mat& grayImage)
 	Mat hist_image(cv::Size(256, 500), CV_8U, cv::Scalar(255));
 	for (size_t i = 0; i < 256; i++)
 	{
-		int length = hist.at<float>(i) / max * 500;
-		cv::line(hist_image, cv::Point(i, 0), cv::Point(i, length), cv::Scalar::all(0));
+        int length = hist.at<float>(i) / max * 500;
+        cv::line(hist_image, cv::Point(i, 0), cv::Point(i, length), cv::Scalar::all(0));
 	}
 	return hist_image;
 }
@@ -53,11 +51,13 @@ Mat get_binary(Mat& gray_image)
 {
 	//ousu 大津阈值
 	Mat result;
+#ifdef __WINDOWS__
 	IplImage gray_in(gray_image);
 	IplImage* binary_out = cvCreateImage(cvSize(gray_image.cols, gray_image.rows), IPL_DEPTH_8U, 1);
 	double what = cvThreshold(&gray_in, binary_out, 0, 255, CV_THRESH_OTSU | CV_THRESH_BINARY);
-	
+
 	result = cvarrToMat(binary_out);
+#endif
 
 	return result;
 }
@@ -204,9 +204,10 @@ int cutout_image(string ifile, string ofile)
 
 void show_image(Mat& mat) 
 {
+#ifdef __WINDOWS__
 	shared_ptr<LLWindow> lw(new LLWindow(mat.cols, mat.rows, mat.channels()));
 	lw->show_window();
 	lw->draw_img((char*)mat.data);
-	//g_v_window.push_back(lw);
+#endif
 }
 
