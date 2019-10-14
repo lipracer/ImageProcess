@@ -2,6 +2,11 @@
 
 #include "cv_algorithm.h"
 
+#ifdef __APPLE__
+#include "es_context.hpp"
+extern ALESContext _esContext;
+#endif
+
 void rgb2gray(Mat& oImage, Mat& nImage) 
 {
 	assert(oImage.depth() != 8);
@@ -200,6 +205,18 @@ int cutout_image(string ifile, string ofile)
 	}
 	imwrite(ofile, image);
 	return 0;
+}
+
+int load_buf_from_img(string ifile, char *buf, int& width, int& height)
+{
+    Mat image = imread(ifile, -1);
+    if(!image.empty())
+    {
+        return -1;
+    }
+    width = image.rows;
+    height = image.cols;
+    return 0;
 }
 
 void show_image(Mat& mat) 

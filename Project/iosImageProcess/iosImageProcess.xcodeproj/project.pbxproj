@@ -14,7 +14,6 @@
 		33C8EB0923517E96009EDFCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33C8EB0823517E96009EDFCA /* Assets.xcassets */; };
 		33C8EB0C23517E96009EDFCA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33C8EB0A23517E96009EDFCA /* LaunchScreen.storyboard */; };
 		33C8EB0F23517E96009EDFCA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C8EB0E23517E96009EDFCA /* main.m */; };
-		33C8EB172351800C009EDFCA /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33C8EB162351800C009EDFCA /* opencv2.framework */; };
 		33C8EB1923518099009EDFCA /* cv_algorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33C8EB1823518099009EDFCA /* cv_algorithm.cpp */; };
 		33C8EB1B2351B448009EDFCA /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33C8EB1A2351B448009EDFCA /* OpenGLES.framework */; };
 		33C8EB1D2351B456009EDFCA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33C8EB1C2351B456009EDFCA /* CoreGraphics.framework */; };
@@ -27,6 +26,8 @@
 		33C8EB2C2351B5D4009EDFCA /* FileWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C8EB2B2351B5D4009EDFCA /* FileWrapper.m */; };
 		33C8EB2F2351B62C009EDFCA /* GLNormalView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 33C8EB2E2351B62C009EDFCA /* GLNormalView.mm */; };
 		33C8EB312351B873009EDFCA /* es_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33C8EB302351B873009EDFCA /* es_context.cpp */; };
+		33EBF610235414D800061548 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33EBF60F235414D800061548 /* opencv2.framework */; };
+		33F4389E2354458C00D6EC14 /* lena.png in Resources */ = {isa = PBXBuildFile; fileRef = 33F4389D2354458C00D6EC14 /* lena.png */; };
 		9B321198C999E2DBB606E326 /* libPods-iosImageProcess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C96F6461CE377B619807526D /* libPods-iosImageProcess.a */; };
 /* End PBXBuildFile section */
 
@@ -43,7 +44,6 @@
 		33C8EB0B23517E96009EDFCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		33C8EB0D23517E96009EDFCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33C8EB0E23517E96009EDFCA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		33C8EB162351800C009EDFCA /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		33C8EB1823518099009EDFCA /* cv_algorithm.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = cv_algorithm.cpp; path = ../../src/cv_algorithm.cpp; sourceTree = "<group>"; };
 		33C8EB1A2351B448009EDFCA /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		33C8EB1C2351B456009EDFCA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -57,6 +57,8 @@
 		33C8EB2D2351B62C009EDFCA /* GLNormalView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLNormalView.h; sourceTree = "<group>"; };
 		33C8EB2E2351B62C009EDFCA /* GLNormalView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GLNormalView.mm; sourceTree = "<group>"; };
 		33C8EB302351B873009EDFCA /* es_context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = es_context.cpp; path = ../../../../src/es_context.cpp; sourceTree = "<group>"; };
+		33EBF60F235414D800061548 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		33F4389D2354458C00D6EC14 /* lena.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lena.png; sourceTree = "<group>"; };
 		59CE4A9D46C84C107410D201 /* Pods-iosImageProcess.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosImageProcess.debug.xcconfig"; path = "Target Support Files/Pods-iosImageProcess/Pods-iosImageProcess.debug.xcconfig"; sourceTree = "<group>"; };
 		C96F6461CE377B619807526D /* libPods-iosImageProcess.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iosImageProcess.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2631DF17B28745A49E46B54 /* Pods-iosImageProcess.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosImageProcess.release.xcconfig"; path = "Target Support Files/Pods-iosImageProcess/Pods-iosImageProcess.release.xcconfig"; sourceTree = "<group>"; };
@@ -67,11 +69,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33EBF610235414D800061548 /* opencv2.framework in Frameworks */,
 				33C8EB212351B46B009EDFCA /* GLKit.framework in Frameworks */,
 				33C8EB1F2351B460009EDFCA /* UIKit.framework in Frameworks */,
 				33C8EB1D2351B456009EDFCA /* CoreGraphics.framework in Frameworks */,
 				33C8EB1B2351B448009EDFCA /* OpenGLES.framework in Frameworks */,
-				33C8EB172351800C009EDFCA /* opencv2.framework in Frameworks */,
 				9B321198C999E2DBB606E326 /* libPods-iosImageProcess.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -82,6 +84,7 @@
 		33C8EAF023517E95009EDFCA = {
 			isa = PBXGroup;
 			children = (
+				33F4389D2354458C00D6EC14 /* lena.png */,
 				33C8EB1823518099009EDFCA /* cv_algorithm.cpp */,
 				33C8EAFB23517E95009EDFCA /* iosImageProcess */,
 				33C8EAFA23517E95009EDFCA /* Products */,
@@ -122,11 +125,11 @@
 		33C8EB152351800C009EDFCA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				33EBF60F235414D800061548 /* opencv2.framework */,
 				33C8EB202351B46A009EDFCA /* GLKit.framework */,
 				33C8EB1E2351B460009EDFCA /* UIKit.framework */,
 				33C8EB1C2351B456009EDFCA /* CoreGraphics.framework */,
 				33C8EB1A2351B448009EDFCA /* OpenGLES.framework */,
-				33C8EB162351800C009EDFCA /* opencv2.framework */,
 				C96F6461CE377B619807526D /* libPods-iosImageProcess.a */,
 			);
 			name = Frameworks;
@@ -213,6 +216,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33F4389E2354458C00D6EC14 /* lena.png in Resources */,
 				33C8EB0C23517E96009EDFCA /* LaunchScreen.storyboard in Resources */,
 				33C8EB0923517E96009EDFCA /* Assets.xcassets in Resources */,
 				33C8EB0723517E95009EDFCA /* Main.storyboard in Resources */,
