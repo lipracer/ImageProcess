@@ -27,9 +27,9 @@ public:
 	void start_play();
 	void wait_times(long long int duration);
 
-	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+	void paint_window();
 
-	friend void draw_window();
+	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 private:
 	int init_instance();
 	int register_class();

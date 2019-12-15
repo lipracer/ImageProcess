@@ -12,15 +12,11 @@
 #include "LLWindow.h"
 #endif
 
-using namespace std;
-using namespace cv;
-
 
 void rgb2gray(Mat& oImage, Mat& nImage);
 
 Mat get_hist(Mat& grayImage);
 
-Mat get_binary(Mat& grayImage);
 
 Mat get_edges(Mat& gray_image);
 
@@ -32,4 +28,12 @@ int cutout_image(string ifile, string ofile);
 
 void show_image(Mat& mat);
 
+<<<<<<< 5e9b2a65e10be3de1afefa6e023025166f6e4ada
 #endif
+=======
+Mat recognise_num(Mat& mat);
+
+Mat rectify_image(char * img_path);
+
+#endif
+>>>>>>> add src code

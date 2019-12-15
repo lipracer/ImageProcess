@@ -3,6 +3,7 @@
 #include <iostream>
 
 wstring LLWindow::class_suffix = L"";
+static shared_ptr<LLWindow> gwindow = nullptr;
 
 LLWindow::LLWindow() : LLWindow(500, 500, 3)
 {
@@ -37,8 +38,6 @@ m_width(width), m_height(heigth), m_chnl_count(chnl_count)
 	m_img_buf = new char[m_video_width * m_video_height * 3];
 
 	memset(m_img_buf, 0, m_video_width * m_video_height * 3);
-
-	
 }
 
 LLWindow::~LLWindow()
@@ -80,6 +79,14 @@ void LLWindow::draw_img(char * data)
 	::StretchDIBits(m_hdc, 0, 0, m_video_width, m_video_height, 0, 0, m_video_width, m_video_height,
 		m_img_buf, (LPBITMAPINFO)&m_infohead, DIB_RGB_COLORS, SRCCOPY);
 
+}
+
+void LLWindow::paint_window() 
+{
+	RECT rect = { 0 };
+	GetWindowRect(m_hwnd, &rect);
+	::StretchDIBits(m_hdc, 0, 0, rect.right - rect.left, rect.bottom - rect.top, 0, 0, m_video_width, m_video_height,
+		m_img_buf, (LPBITMAPINFO)&m_infohead, DIB_RGB_COLORS, SRCCOPY);
 }
 
 int LLWindow::register_class()
@@ -140,6 +147,7 @@ int LLWindow::init_instance()
 
 int LLWindow::show_window()
 {
+	cout << "count:" << shared_from_this().use_count() << endl;
 	WM_DRAW_IMAGE = RegisterWindowMessage(L"LipracerMsg");
 
 	if (!WM_DRAW_IMAGE)
@@ -147,13 +155,15 @@ int LLWindow::show_window()
 		cout << "Register fail!!!" << endl;
 		return 0;
 	}
+	cout << "count:" << shared_from_this().use_count() << endl;
 
 	auto self(shared_from_this());
+	gwindow = self;
 
 	unique_lock<mutex> uqlck(m_window_start_mtx);
 	auto msg_loop = [this, self]() -> int 
 	{
-
+		//this_thread::sleep_for(chrono::milliseconds(10000));
 		cout << "count:" << self.use_count() << endl;
 		MSG msg;
 
@@ -175,12 +185,16 @@ int LLWindow::show_window()
 		cout << "create window notify_one!!!" << endl;
 		m_window_start_cdv.notify_one();
 
-		while (GetMessage(&msg, m_hwnd, 0, 0/*, PM_REMOVE*/))
+		while (GetMessage(&msg, m_hwnd, 0, 0/*, PM_REMOVE*/) > 0)
 		{
-			if (msg.message == WM_QUIT)
+			if (msg.message == WM_QUIT || msg.message == WM_QUIT || msg.message == WM_DESTROY)
 			{
 				cout << "quit thread\n";
 				break;
+			}
+			if (msg.message == WM_PAINT)
+			{
+
 			}
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
@@ -188,8 +202,6 @@ int LLWindow::show_window()
 		}
 		return (int)msg.wParam;
 	};
-
-	cout << "count:" << self.use_count() << endl;
 
 	thread th_msg_loop(msg_loop);
 	th_msg_loop.detach();
@@ -217,7 +229,7 @@ LRESULT LLWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
 		// TODO: Add any drawing code here...
-
+		gwindow->paint_window();
 		EndPaint(hWnd, &ps);
 		break;
 	case WM_DESTROY:

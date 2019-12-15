@@ -228,3 +228,15 @@ void show_image(Mat& mat)
 #endif
 }
 
+Mat recognise_num(Mat& mat) 
+{
+	return mat;
+}
+
+Mat rectify_image(char * img_path) 
+{
+	auto image = imread(img_path);
+	cv::findChe
+	return image;
+}
+
